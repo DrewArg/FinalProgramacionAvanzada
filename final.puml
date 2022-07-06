@@ -1,0 +1,93 @@
+@startuml final
+!theme reddress-darkblue from https://raw.githubusercontent.com/plantuml/plantuml/master/themes
+
+package domain{
+    class Cliente{
+        -Servicio servicio
+        -Vehiculo[] vehiculos
+        -Boolean tieneMora
+    }
+
+    abstract class Membresia{
+
+    }
+
+    class Platinum extends Membresia{
+       
+    }
+
+    class Classic extends Membresia{
+        -Integer cantidadRemolques
+    }
+
+    class Economic extends Membresia{
+        -Integer cantidadReparaciones
+    }
+
+    class Vehiculo{
+        -String descripcionProblema
+        -Integer cantidadEjes
+        -Coordenada Coordenada
+        -Double tonelada
+        -Problema problema
+    }
+
+    class Coordenada{
+        -Double latitud
+        -Double longitud
+    }
+
+
+    abstract class CamionAuxilio{
+        Reparacion reparacion
+    }
+
+    class MiniTallerMovil extends CamionAuxilio{
+
+    }
+
+    class MiniGrua extends CamionAuxilio{
+
+    }
+
+    class GranGrua extends CamionAuxilio{
+        -Boolean : tallerAsociado
+    }
+
+    class Problema{
+        -String descripcion
+        -Boolean requiereRemolque
+        -TipoReparacion TipoReparacion
+    }
+
+    Enum TipoReparacion{
+
+    }
+
+    interface ModuloPagos{
+
+    }
+
+}
+
+Problema -- Vehiculo : tiene >
+Membresia -- Cliente : tiene <
+Vehiculo *-- Cliente : tiene <
+TipoReparacion -- Problema : >
+Vehiculo -- Coordenada : tiene <
+
+
+
+package service{
+    class CamionAuxilioService{
+
+    }
+}
+
+package test{
+
+}
+
+
+
+@enduml
