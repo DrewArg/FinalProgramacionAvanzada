@@ -1,8 +1,8 @@
 # Final Programacion Avanzada
 # Integrantes : Fabbiano, Andrés / Orduna, Fernando
-<em>Auxilio Mecánico</em>
-<p>Requerimientos del sistema
-Se necesita modelar una aplicación que permita administrar los servicios de auxilio 
+<h1>Auxilio Mecánico</h1>
+<h3>Requerimientos del sistema</h3>
+<p>Se necesita modelar una aplicación que permita administrar los servicios de auxilio 
 mecánico a sus clientes.</p>
 <p>El circuito comienza con el ingreso de un pedido, indicando el lugar donde se encuentra el 
 vehículo que necesita ser asistido y una descripción del problema que permite saber:
