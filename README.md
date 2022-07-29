@@ -8,7 +8,6 @@ mecánico a sus clientes.</p>
 vehículo que necesita ser asistido y una descripción del problema que permite saber:
 Si la reparación es simple o compleja. Si se requiere remolque o no.</p>
 <p>A su vez, un cliente puede contratar tres tipos de servicio:</p>
-  <br>
 ●   Platinum permite una ilimitada cantidad de servicios.
   <br>
 ●   Classic reparaciones ilimitadas y hasta 5 remolques al año.
