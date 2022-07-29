@@ -1,6 +1,7 @@
 @startuml final
 
 package domain{
+
     class Cliente{
         - Membresia membresia
         - List<Vehiculo> vehiculos
@@ -8,10 +9,7 @@ package domain{
     }
 
     abstract class Membresia{
-		- Integer contadorRemolques
-		- Boolean tieneRemolques
-		- Integer contadorReparaciones
-		- Boolean tieneReparaciones
+		- List<TipoServicio>(2) servicios 
     }
 
     class Platinum extends Membresia{
@@ -28,19 +26,19 @@ package domain{
 
     class Vehiculo{
         - Ubicacion ubicacion
-        - Double tonelada
+        - Double toneladas
         - Problema problema
     }
 
-    class Coordenada{
-        - Double latitud
+    class Ubicacion{
         - Double longitud
+        - Double latitud
     }
 
 
     abstract class CamionAuxilio{
         - List<Problema> pedidos
-        - Coordenada coordenada
+        - Ubicacion ubicacion
     }
 
     class MiniTallerMovil extends CamionAuxilio{
@@ -58,25 +56,30 @@ package domain{
     class Problema{
         - String descripcion
         - Boolean requiereRemolque
-        - TipoReparacion TipoReparacion
+        - TipoServicio tipoServicio
     }
 
-    Enum TipoReparacion{
-		SIMPLE
-		COMPLEJA
-    }
+	Enum TipoServicio{
+	REMOLQUE
+	REPARACION_SIMPLE
+	REPARACION_COMPLEJA
+	}
 
     interface ModuloPagos{
-
+		tieneMora()
     }
+
 
 }
 
-Problema        -- Vehiculo : tiene <
-Membresia       -- Cliente  : tiene <
-Vehiculo       *-- Cliente  : tiene <
-TipoReparacion  -- Problema : tiene <
-Coordenada      -- Vehiculo : tiene <
+Problema        *--   Vehiculo       : tiene      <
+Ubicacion       *--   Vehiculo       : tiene      <
+Ubicacion       *--   CamionAuxilio  : tiene      <
+Membresia       *--   Cliente        : tiene      <
+Vehiculo        *--   Cliente        : tiene      <
+ModuloPagos     <|..  Cliente        : implementa <
+TipoServicio    *--   Problema       : tiene      <
+TipoServicio    *--   Membresia      : tiene      <
 
 
 
