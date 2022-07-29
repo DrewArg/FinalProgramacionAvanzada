@@ -25,6 +25,7 @@ El cliente tenga la cuota al día. El máximo de mora depende de cada tipo de se
   <br>
 ●   los platinum pueden deber hasta una cuota de lo que pagan mensualmente. 
   <br>
+  <br>
 <p>Para saber la deuda del cliente se debe consultar al módulo de pagos. Este módulo no 
 deben desarrollarlo, sólo definir la interfaz para poder comunicarse con  él.
 El cliente solicite un tipo de servicio válido (por ejemplo, si es un Economic no puede hacer 
@@ -48,6 +49,7 @@ Las capacidades de cada tipo de camión son:
 remolque. 
   <br>
 ●   La mini grúa puede remolcar vehículos de hasta 3 toneladas. 
+  <br>
   <br>
 <p>La gran grúa puede remolcar todo tipo de vehículos. Sólo las grandes grúas que cuenten 
 con un taller de alta complejidad pueden realizar las reparaciones indicadas como 
