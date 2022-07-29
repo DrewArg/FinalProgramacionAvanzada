@@ -3,11 +3,11 @@
 <em>Auxilio Mecánico</em>
 <p>Requerimientos del sistema
 Se necesita modelar una aplicación que permita administrar los servicios de auxilio 
-mecánico a sus clientes.
-El circuito comienza con el ingreso de un pedido, indicando el lugar donde se encuentra el 
+mecánico a sus clientes.</p>
+<p>El circuito comienza con el ingreso de un pedido, indicando el lugar donde se encuentra el 
 vehículo que necesita ser asistido y una descripción del problema que permite saber:
-Si la reparación es simple o compleja. Si se requiere remolque o no. 
-A su vez, un cliente puede contratar tres tipos de servicio:
+Si la reparación es simple o compleja. Si se requiere remolque o no.</p>
+<p>A su vez, un cliente puede contratar tres tipos de servicio:</p>
   <br>
 ●   Platinum permite una ilimitada cantidad de servicios.
   <br>
@@ -25,14 +25,14 @@ El cliente tenga la cuota al día. El máximo de mora depende de cada tipo de se
   <br>
 ●   los platinum pueden deber hasta una cuota de lo que pagan mensualmente. 
   <br>
-Para saber la deuda del cliente se debe consultar al módulo de pagos. Este módulo no 
+<p>Para saber la deuda del cliente se debe consultar al módulo de pagos. Este módulo no 
 deben desarrollarlo, sólo definir la interfaz para poder comunicarse con  él.
 El cliente solicite un tipo de servicio válido (por ejemplo, si es un Economic no puede hacer 
 pedidos que requieran remolque, controlar los topes de servicios, etc).
 Si alguna de estas cosas no se cumple, no se puede generar el pedido el sistema debe 
 informar correctamente el motivo de la no aceptación del pedido.
 Si el pedido es aceptado, se le debe asignar automáticamente un camión de auxilio. Para 
-ello se debe poder saber cuales son los camiones que pueden responder a ese pedido.
+ello se debe poder saber cuales son los camiones que pueden responder a ese pedido.</p>
 Se cuenta con tres tipos de camiones: 
   <br>
 ●   Mini taller móvil.
@@ -49,7 +49,7 @@ remolque.
   <br>
 ●   La mini grúa puede remolcar vehículos de hasta 3 toneladas. 
   <br>
-La gran grúa puede remolcar todo tipo de vehículos. Sólo las grandes grúas que cuenten 
+<p>La gran grúa puede remolcar todo tipo de vehículos. Sólo las grandes grúas que cuenten 
 con un taller de alta complejidad pueden realizar las reparaciones indicadas como 
 complejas.
 Si el cliente tiene servicio Platinum, se le asignará el camión que tenga menos pedidos 
@@ -61,7 +61,7 @@ pedidos pendientes de cada camión.
 Casos de prueba
 Cada uno de los 5 test cases deberá ser realizado.
 Se parte de un escenario en el que se cuenta con tres camiones: un mini taller, una mini 
-grúa y una grúa con taller. La mini grúa tiene un pedido asignado.
+grúa y una grúa con taller. La mini grúa tiene un pedido asignado.</p>
 Diferentes clientes piden un remolque:
   <br>
 ●   Cliente Economic, el pedido es denegado (no puede solicitar remolques).
@@ -76,5 +76,4 @@ la gran grúa porque la mini grúa no puede remolcarlo.
 ●   Cliente Classic con una deuda superior a los $200, el pedido es denegado por mora. 
   <br>
 ●   Cliente Platinum, se le asigna la gran grúa que es la que está más libre (no tiene 
-pedidos). 
-</p>
+pedidos).
