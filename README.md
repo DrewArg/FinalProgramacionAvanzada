@@ -8,6 +8,7 @@ El circuito comienza con el ingreso de un pedido, indicando el lugar donde se en
 vehículo que necesita ser asistido y una descripción del problema que permite saber:
 Si la reparación es simple o compleja. Si se requiere remolque o no. 
 A su vez, un cliente puede contratar tres tipos de servicio:
+  <br>
 ●   Platinum permite una ilimitada cantidad de servicios.
 ●   Classic reparaciones ilimitadas y hasta 5 remolques al año.
 ●   Economic hasta 5 reparaciones al año sin remolques ni reparaciones complejas.
