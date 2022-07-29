@@ -59,9 +59,9 @@ pendientes. Para los demás tipos de servicio se le asignará el camión más ec
 teniendo el cuenta el costo de cada camión ordenado de menor a mayor (donde: mini taller; 
 mini grúa, gran grúa, gran grúa con taller).
 Cuando un camión finaliza un pedido esto se informa al sistema, esto permite saber los 
-pedidos pendientes de cada camión.
-Casos de prueba
-Cada uno de los 5 test cases deberá ser realizado.
+pedidos pendientes de cada camión.</p>
+<h4>Casos de prueba</h4>
+<p>Cada uno de los 5 test cases deberá ser realizado.
 Se parte de un escenario en el que se cuenta con tres camiones: un mini taller, una mini 
 grúa y una grúa con taller. La mini grúa tiene un pedido asignado.</p>
 Diferentes clientes piden un remolque:
