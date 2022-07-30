@@ -1,4 +1,6 @@
-package ar.edu.davinci.domain;
+package ar.edu.davinci.domain.clases;
+
+import ar.edu.davinci.domain.enumerados.TipoMembresia;
 
 public class Platinum extends Membresia {
 

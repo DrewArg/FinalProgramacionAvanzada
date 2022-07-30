@@ -1,16 +1,18 @@
-package ar.edu.davinci.domain;
+package ar.edu.davinci.domain.clases;
+
+import ar.edu.davinci.domain.enumerados.TipoReparacion;
 
 public class Problema {
 
 	private String descripcion;
 	private Boolean requiereRemolque;
-	private TipoServicio tipoReparacion;
+	private TipoReparacion tipoReparacion;
 
 	/**
 	 *  si el tipo de reparacion es remolque o reparacion compleja, se deberia activar el flag de remolque
 	 */
 
-	public Problema(String descripcion, TipoServicio tipoReparacion) {
+	public Problema(String descripcion, TipoReparacion tipoReparacion) {
 		this.descripcion = descripcion;
 		this.tipoReparacion = tipoReparacion;
 
@@ -32,11 +34,11 @@ public class Problema {
 		this.requiereRemolque = requiereRemolque;
 	}
 
-	public TipoServicio getTipoReparacion() {
+	public TipoReparacion getTipoReparacion() {
 		return tipoReparacion;
 	}
 
-	public void setTipoReparacion(TipoServicio tipoReparacion) {
+	public void setTipoReparacion(TipoReparacion tipoReparacion) {
 		this.tipoReparacion = tipoReparacion;
 	}
 }

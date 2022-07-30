@@ -1,4 +1,4 @@
-package ar.edu.davinci.domain;
+package ar.edu.davinci.domain.interfaces;
 
 public interface ModuloPagos {
 

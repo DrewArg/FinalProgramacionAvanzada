@@ -1,4 +1,4 @@
-package ar.edu.davinci.domain;
+package ar.edu.davinci.domain.clases;
 
 public class MiniGrua extends CamionAuxilio {
 

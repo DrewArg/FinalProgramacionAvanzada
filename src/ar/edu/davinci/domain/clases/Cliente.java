@@ -1,6 +1,8 @@
-package ar.edu.davinci.domain;
+package ar.edu.davinci.domain.clases;
 
 import java.util.List;
+
+import ar.edu.davinci.domain.interfaces.ModuloPagos;
 
 public class Cliente implements ModuloPagos{
 
