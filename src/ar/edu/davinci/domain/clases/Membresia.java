@@ -1,7 +1,5 @@
 package ar.edu.davinci.domain.clases;
 
-import java.util.List;
-
 import ar.edu.davinci.domain.enumerados.TipoMembresia;
 
 public abstract class Membresia {
