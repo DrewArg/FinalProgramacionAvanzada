@@ -1,17 +1,19 @@
-package ar.edu.davinci.domain.service;
+package ar.edu.davinci.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.davinci.domain.clases.Cliente;
 import ar.edu.davinci.domain.clases.Membresia;
+import ar.edu.davinci.domain.clases.Problema;
 import ar.edu.davinci.domain.clases.Vehiculo;
 import ar.edu.davinci.domain.enumerados.TipoMembresia;
 import ar.edu.davinci.domain.enumerados.TipoReparacion;
 
 public class ClienteService {
 
-	private List<Cliente> clientes = new ArrayList();
+	private List<Cliente> clientes = new ArrayList<Cliente>();
+	private ProblemaService problemaService = new ProblemaService();
 
 	public String addCliente(String dni, Membresia membresia) {
 
@@ -45,7 +47,7 @@ public class ClienteService {
 
 		String mensaje = null;
 		Cliente cliente = buscarClienteByDni(dni);
-		
+
 		if (cliente != null) {
 
 			cliente.getMembresia().setTipoMembresia(tipoMembresia);
@@ -58,13 +60,34 @@ public class ClienteService {
 
 		return mensaje;
 	}
-	
-	public void reportarProblema(String descripcion, TipoReparacion tipoReparacion) {
 
-		
+	public String reportarProblema(String dni, String patente, String descripcion, TipoReparacion tipoReparacion) {
+
+		String mensaje = null;
+
+		Problema problema = problemaService.addAndReturnProblema(descripcion, tipoReparacion);
+
+		Cliente cliente = buscarClienteByDni(dni);
+
+		for (Vehiculo vehiculo : cliente.getVehiculos()) {
+
+			if (vehiculo.getPatente().equalsIgnoreCase(patente)) {
+
+				vehiculo.setProblema(problema);
+
+				mensaje = "Problema reportado correctamente";
+			} else {
+				mensaje = "El cliente no tiene eses vehiculo en su poder.";
+			}
+		}
+
+//		TODO : aca deberia llamar al metodo de la interfaz listener y pasarle la data
+
+		return mensaje;
 	}
 
-	public Cliente buscarClienteByDni(String dni) {
+	private Cliente buscarClienteByDni(String dni) {
+
 		Cliente resultado = null;
 
 		for (Cliente cliente : clientes) {
