@@ -9,10 +9,12 @@ public class Cliente implements ModuloPagos{
 	private Membresia membresia;
 	private List<Vehiculo> vehiculos;
 	private Boolean tieneMora;
+	private String dni;
 
-	public Cliente(Membresia membresia) {
+	public Cliente(String dni, Membresia membresia) {
 		this.membresia = membresia;
 		this.tieneMora = false;
+		this.dni = dni;
 	}
 
 	public Membresia getMembresia() {
@@ -41,5 +43,13 @@ public class Cliente implements ModuloPagos{
 
 	public void setTieneMora(Boolean tieneMora) {
 		this.tieneMora = tieneMora;
+	}
+	
+	public String getDni() {
+		return dni;
+	}
+	
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 }
