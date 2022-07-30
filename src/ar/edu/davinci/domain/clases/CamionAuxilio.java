@@ -18,8 +18,11 @@ public abstract class CamionAuxilio {
 	}
 
 	public Vehiculo getPedido(String patente) {
-		// return pedidos.get(index);
-		//TODO : logica para buscar por patente
+		for (Vehiculo vehiculo : pedidos) {
+			if (vehiculo.getPatente().equals(patente)) {
+				return vehiculo;
+			}
+		}
 		return null;
 	}
 
@@ -35,7 +38,7 @@ public abstract class CamionAuxilio {
 		this.ubicacion = ubicacion;
 	}
 
-	public String getPatente(){
+	public String getPatente() {
 		return patente;
 	}
 
