@@ -8,9 +8,9 @@ public class Cliente implements ModuloPagos{
 	private List<Vehiculo> vehiculos;
 	private Boolean tieneMora;
 
-	public Cliente(Membresia membresia, Boolean tieneMora) {
+	public Cliente(Membresia membresia) {
 		this.membresia = membresia;
-		this.tieneMora = tieneMora;
+		this.tieneMora = false;
 	}
 
 	public Membresia getMembresia() {
@@ -25,7 +25,7 @@ public class Cliente implements ModuloPagos{
 		return vehiculos;
 	}
 
-	public Vehiculo getVehiculo(Integer index) {
+	public Vehiculo getVehiculo(Integer index) { //string con ID / patente y devuelve el que se necesita
 		return vehiculos.get(index);
 	}
 

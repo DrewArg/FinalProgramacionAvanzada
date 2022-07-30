@@ -4,12 +4,13 @@ public class GranGrua extends CamionAuxilio {
 
 	private Boolean tallerAsociado;
 
-	public GranGrua(Ubicacion ubicacion) {
-		super(ubicacion);
+	public GranGrua(Ubicacion ubicacion, String patente) {
+		super(ubicacion, patente);
+		this.tallerAsociado = false;
 	}
 
-	public GranGrua(Ubicacion ubicacion, Boolean tallerAsociado) {
-		super(ubicacion);
+	public GranGrua(Ubicacion ubicacion, String patente, Boolean tallerAsociado) {
+		super(ubicacion, patente);
 		this.tallerAsociado = tallerAsociado;
 	}
 

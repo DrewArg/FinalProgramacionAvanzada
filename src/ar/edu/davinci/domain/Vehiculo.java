@@ -2,12 +2,13 @@ package ar.edu.davinci.domain;
 
 public class Vehiculo {
 
-	private Ubicacion ubicacion;
-	private Double toneladas;
+	private Ubicacion ubicacion; // longitud (x) y latitud (y)
 	private Problema problema;
+	private Double toneladas;
+	private String patente;
 
-	public Vehiculo(Ubicacion ubicacion, Double toneladas) {
-		this.ubicacion = ubicacion;
+	public Vehiculo(String patente, Double toneladas) {
+		this.patente = patente;
 		this.toneladas = toneladas;
 	}
 
@@ -15,20 +16,20 @@ public class Vehiculo {
 		return ubicacion;
 	}
 
-	public void setUbicacion(Ubicacion ubicacion) {
-		this.ubicacion = ubicacion;
+	public Problema getProblema() {
+		return problema;
 	}
 
 	public Double getToneladas() {
 		return toneladas;
 	}
 
-	public void setToneladas(Double toneladas) {
-		this.toneladas = toneladas;
+	public String getPatente() {
+		return patente;
 	}
 
-	public Problema getProblema() {
-		return problema;
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
 	}
 
 	public void setProblema(Problema problema) {
