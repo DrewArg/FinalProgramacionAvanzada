@@ -14,9 +14,13 @@ public class ClienteService {
 
 	private List<Cliente> clientes = new ArrayList<Cliente>();
 	private ProblemaService problemaService = new ProblemaService();
+	private MembresiaService membresiaService = new MembresiaService();
 
-	public String addCliente(String dni, Membresia membresia) {
+	public String addCliente(String dni, TipoMembresia tipoMembresia) {
 
+		Membresia membresia = membresiaService.factoryMembresia(tipoMembresia);
+		
+		membresiaService.addMembresia(membresia);
 		clientes.add(new Cliente(dni, membresia));
 
 		return "Cliente agregado con exito";
@@ -75,7 +79,10 @@ public class ClienteService {
 
 				vehiculo.setProblema(problema);
 
+				if(clienteCumpleAndSetTope(cliente, problema));
+				
 				mensaje = "Problema reportado correctamente";
+
 			} else {
 				mensaje = "El cliente no tiene eses vehiculo en su poder.";
 			}
@@ -96,6 +103,30 @@ public class ClienteService {
 
 				resultado = cliente;
 			}
+		}
+
+		return resultado;
+	}
+
+	private Boolean clienteCumpleAndSetTope(Cliente cliente, Problema problema) {
+
+		Boolean resultado = false;
+
+		if (cliente.getMembresia().getTipoMembresia() == TipoMembresia.CLASSIC && problema.getRequiereRemolque()
+				&& cliente.getMembresia().getTopeRemolques() > 0) {
+
+			cliente.getMembresia().setTopeRemolques(cliente.getMembresia().getTopeRemolques() - 1);
+
+			resultado = true;
+
+		} else if (cliente.getMembresia().getTipoMembresia() == TipoMembresia.ECONOMMIC
+				&& cliente.getMembresia().getTopeReparaciones() > 0
+				&& problema.getTipoReparacion() == TipoReparacion.REPARACION_SIMPLE) {
+
+			cliente.getMembresia().setTopeReparaciones(cliente.getMembresia().getTopeReparaciones() - 1);
+
+			resultado = true;
+
 		}
 
 		return resultado;
