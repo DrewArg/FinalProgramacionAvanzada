@@ -29,10 +29,6 @@ public class Cliente implements ModuloPagos{
 		return vehiculos;
 	}
 
-	public Vehiculo getVehiculo(Integer index) { //string con ID / patente y devuelve el que se necesita
-		return vehiculos.get(index);
-	}
-
 	public void setVehiculo(Vehiculo vehiculo) {
 		vehiculos.add(vehiculo);
 	}

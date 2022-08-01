@@ -39,6 +39,4 @@ public abstract class Membresia {
 		this.tipoMembresia = tipoMembresia;
 	}
 
-
-
 }
