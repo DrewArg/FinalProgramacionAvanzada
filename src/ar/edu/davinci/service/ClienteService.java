@@ -19,7 +19,7 @@ public class ClienteService {
 	public String addCliente(String dni, TipoMembresia tipoMembresia) {
 
 		Membresia membresia = membresiaService.factoryMembresia(tipoMembresia);
-		
+
 		membresiaService.addMembresia(membresia);
 		clientes.add(new Cliente(dni, membresia));
 
@@ -79,9 +79,10 @@ public class ClienteService {
 
 				vehiculo.setProblema(problema);
 
-				if(clienteCumpleAndSetTope(cliente, problema));
-				
-				mensaje = "Problema reportado correctamente";
+				if (clienteCumpleAndSetTope(cliente, problema)) {
+
+					mensaje = "Problema reportado correctamente";
+				}
 
 			} else {
 				mensaje = "El cliente no tiene eses vehiculo en su poder.";
