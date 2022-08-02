@@ -13,12 +13,25 @@ import ar.edu.davinci.domain.enumerados.TipoReparacion;
 
 public class CamionAuxilioService {
 
-	private List<CamionAuxilio> camiones = new ArrayList<CamionAuxilio>();
+	private static CamionAuxilioService instancia;
+	private List<CamionAuxilio> auxilios = new ArrayList<CamionAuxilio>();
+
+	private CamionAuxilioService() {
+
+	}
+
+	public synchronized static CamionAuxilioService getInstancia() {
+		if (instancia == null) {
+			instancia = new CamionAuxilioService();
+		}
+
+		return instancia;
+	}
 
 	public void addMiniTallerMovil(Double longitud, Double latitud, String patente) {
 		MiniTallerMovil minitallet = new MiniTallerMovil(new Ubicacion(longitud, latitud), patente);
 
-		camiones.add(minitallet);
+		auxilios.add(minitallet);
 
 		System.out.println(minitallet);
 	}
@@ -26,7 +39,7 @@ public class CamionAuxilioService {
 	public void addMiniGrua(Double longitud, Double latitud, String patente) {
 		MiniGrua miniGrua = new MiniGrua(new Ubicacion(longitud, latitud), patente);
 
-		camiones.add(miniGrua);
+		auxilios.add(miniGrua);
 
 		System.out.println(miniGrua);
 	}
@@ -34,7 +47,7 @@ public class CamionAuxilioService {
 	public void addGranGrua(Double longitud, Double latitud, String patente) {
 		GranGrua granGrua = new GranGrua(new Ubicacion(longitud, latitud), patente);
 
-		camiones.add(granGrua);
+		auxilios.add(granGrua);
 
 		System.out.println(granGrua);
 	}
@@ -42,7 +55,7 @@ public class CamionAuxilioService {
 	public void addGranGruaConTaller(Double longitud, Double latitud, String patente) {
 		GranGrua granGrua = new GranGrua(new Ubicacion(longitud, latitud), patente, true);
 
-		camiones.add(granGrua);
+		auxilios.add(granGrua);
 
 		System.out.println(granGrua);
 	}
@@ -51,7 +64,7 @@ public class CamionAuxilioService {
 
 		CamionAuxilio camion = null;
 
-		for (CamionAuxilio camionAuxilio : camiones) {
+		for (CamionAuxilio camionAuxilio : auxilios) {
 			if (camionAuxilio.getPatente().equals(patente)) {
 				camion = camionAuxilio;
 			}
@@ -62,13 +75,15 @@ public class CamionAuxilioService {
 	public CamionAuxilio camionIndicadoParaPedido(Vehiculo vehiculo) {
 		CamionAuxilio camionIndicado = null;
 
-		for (CamionAuxilio camion : camiones) {
+		List<CamionAuxilio> camiones = new ArrayList<CamionAuxilio>();
+
+		for (CamionAuxilio camion : auxilios) {
 
 			if (!vehiculo.getProblema().getRequiereRemolque()) {
 
 				if (camion instanceof MiniTallerMovil) {
 
-					List<CamionAuxilio> camiones = new ArrayList<CamionAuxilio>();
+					System.out.println(camiones + " MiniTallerMovil");
 
 					camiones.add(camion);
 
@@ -81,7 +96,7 @@ public class CamionAuxilioService {
 
 				if (camion instanceof MiniGrua) {
 
-					List<CamionAuxilio> camiones = new ArrayList<CamionAuxilio>();
+					System.out.println(camiones + " MiniGrua");
 
 					camiones.add(camion);
 
@@ -94,7 +109,7 @@ public class CamionAuxilioService {
 
 				if (camion instanceof GranGrua) {
 
-					List<CamionAuxilio> camiones = new ArrayList<CamionAuxilio>();
+					System.out.println(camiones + " GranGrua");
 
 					camiones.add(camion);
 
@@ -105,7 +120,7 @@ public class CamionAuxilioService {
 
 				if (camion instanceof GranGrua && ((GranGrua) camion).getTallerAsociado()) {
 
-					List<CamionAuxilio> camiones = new ArrayList<CamionAuxilio>();
+					System.out.println(camiones + " GranGrua con taller");
 
 					camiones.add(camion);
 
@@ -114,8 +129,10 @@ public class CamionAuxilioService {
 
 			}
 		}
-		System.out.println(camionIndicado);
 
+		camionIndicado.addPedido(vehiculo);
+
+		System.out.println(camionIndicado);
 		return camionIndicado;
 	}
 

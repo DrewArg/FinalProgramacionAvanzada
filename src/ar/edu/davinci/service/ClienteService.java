@@ -14,9 +14,22 @@ import ar.edu.davinci.domain.interfaces.Listener;
 
 public class ClienteService {
 
+	private static ClienteService instance;
 	private List<Cliente> clientes = new ArrayList<Cliente>();
-	private ProblemaService problemaService = new ProblemaService();
-	private MembresiaService membresiaService = new MembresiaService();
+	private ProblemaService problemaService = ProblemaService.getInstance();
+	private MembresiaService membresiaService = MembresiaService.getInstance();
+
+	private ClienteService() {
+
+	}
+
+	public synchronized static ClienteService getInstance() {
+		if (instance == null) {
+			instance = new ClienteService();
+		}
+
+		return instance;
+	}
 
 	public void addCliente(String dni, TipoMembresia tipoMembresia) {
 
@@ -44,7 +57,7 @@ public class ClienteService {
 			mensaje = "No existe cliente con ese dni.";
 
 		}
-
+		System.out.println(cliente);
 		System.out.println(mensaje);
 	}
 
@@ -88,7 +101,7 @@ public class ClienteService {
 
 					mensaje = "Problema reportado correctamente";
 				} else {
-					
+
 					mensaje = "La membresia del cliente no cubre este tipo de servicios";
 				}
 

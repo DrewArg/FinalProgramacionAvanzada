@@ -11,8 +11,21 @@ import ar.edu.davinci.domain.enumerados.TipoMembresia;
 
 public class MembresiaService {
 
+	private static MembresiaService instance;
 	List<Membresia> membresias = new ArrayList<Membresia>();
 
+	private MembresiaService() {
+		
+	}
+	
+	public synchronized static MembresiaService getInstance() {
+		if(instance == null) {
+			instance = new MembresiaService();
+		}
+		
+		return instance;
+	}
+	
 	public Membresia addMembresia(TipoMembresia tipoMembresia) {
 
 		Membresia membresia = factoryMembresia(tipoMembresia);

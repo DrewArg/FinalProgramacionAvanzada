@@ -8,8 +8,22 @@ import ar.edu.davinci.domain.enumerados.TipoReparacion;
 
 public class ProblemaService {
 
+	private static ProblemaService instance;
 	List<Problema> problemas = new ArrayList<Problema>();
 
+	
+	private ProblemaService() {
+		
+	}
+	
+	public synchronized static ProblemaService getInstance() {
+		if(instance == null) {
+			instance = new ProblemaService();
+		}
+		
+		return instance;
+	}
+	
 	public Problema addAndReturnProblema(String descripcion, TipoReparacion tipoReparacion) {
 
 		Problema problema = factoryProblema(descripcion, tipoReparacion);

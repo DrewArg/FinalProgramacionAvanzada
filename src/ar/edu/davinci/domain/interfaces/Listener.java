@@ -8,11 +8,11 @@ import ar.edu.davinci.service.CamionAuxilioService;
 public interface Listener {
 	public static void asignarCamion(Cliente cliente, Vehiculo vehiculo) {
 
-		CamionAuxilioService camionService = new CamionAuxilioService();
+		CamionAuxilioService camionService = CamionAuxilioService.getInstancia();
 
 		CamionAuxilio camion = null;
 
-		if (cliente.getTieneMora()) {
+		if (!cliente.getTieneMora()) {
 			camion = camionService.camionIndicadoParaPedido(vehiculo);
 		}
 
