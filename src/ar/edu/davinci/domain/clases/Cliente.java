@@ -1,13 +1,14 @@
 package ar.edu.davinci.domain.clases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.davinci.domain.interfaces.ModuloPagos;
 
-public class Cliente implements ModuloPagos{
+public class Cliente implements ModuloPagos {
 
+	private List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 	private Membresia membresia;
-	private List<Vehiculo> vehiculos;
 	private Boolean tieneMora;
 	private String dni;
 
@@ -29,10 +30,6 @@ public class Cliente implements ModuloPagos{
 		return vehiculos;
 	}
 
-	public Vehiculo getVehiculo(Integer index) { //string con ID / patente y devuelve el que se necesita
-		return vehiculos.get(index);
-	}
-
 	public void setVehiculo(Vehiculo vehiculo) {
 		vehiculos.add(vehiculo);
 	}
@@ -44,12 +41,19 @@ public class Cliente implements ModuloPagos{
 	public void setTieneMora(Boolean tieneMora) {
 		this.tieneMora = tieneMora;
 	}
-	
+
 	public String getDni() {
 		return dni;
 	}
-	
+
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente [membresia=" + membresia + ", vehiculos=" + vehiculos + ", tieneMora=" + tieneMora + ", dni="
+				+ dni + "]";
+	}
+
 }

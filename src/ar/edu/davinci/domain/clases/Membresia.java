@@ -4,15 +4,12 @@ import ar.edu.davinci.domain.enumerados.TipoMembresia;
 
 public abstract class Membresia {
 
-	// private List<TipoServicio> servicios;
 	private Integer topeReparaciones;
 	private Integer topeRemolques;
 	private TipoMembresia tipoMembresia;
 
 	public Membresia(TipoMembresia tipoMembresia) {
 		this.tipoMembresia = tipoMembresia;
-		// cuando se crea la membresia depende el tipo de membresia se asignan distintos
-		// topes y se crea la membresia correspondiente
 	}
 
 	public Integer getTopeReparaciones() {
@@ -39,6 +36,10 @@ public abstract class Membresia {
 		this.tipoMembresia = tipoMembresia;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Membresia [topeReparaciones=" + topeReparaciones + ", topeRemolques=" + topeRemolques
+				+ ", tipoMembresia=" + tipoMembresia + "]";
+	}
 
 }

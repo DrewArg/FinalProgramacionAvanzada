@@ -9,8 +9,11 @@ public class Problema {
 	private TipoReparacion tipoReparacion;
 
 	/**
-	 *  si el tipo de reparacion es remolque o reparacion compleja, se deberia activar el flag de remolque
+	 * si el tipo de reparacion es remolque o reparacion compleja, se deberia
+	 * activar el flag de remolque
 	 */
+
+//	TODO : deberia haber un boolean problemaResuelto?
 
 	public Problema(String descripcion, TipoReparacion tipoReparacion) {
 		this.descripcion = descripcion;
@@ -41,4 +44,11 @@ public class Problema {
 	public void setTipoReparacion(TipoReparacion tipoReparacion) {
 		this.tipoReparacion = tipoReparacion;
 	}
+
+	@Override
+	public String toString() {
+		return "Problema [descripcion=" + descripcion + ", requiereRemolque=" + requiereRemolque + ", tipoReparacion="
+				+ tipoReparacion + "]";
+	}
+
 }

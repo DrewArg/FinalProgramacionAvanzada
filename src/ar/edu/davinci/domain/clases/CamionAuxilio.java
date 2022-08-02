@@ -1,10 +1,11 @@
 package ar.edu.davinci.domain.clases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CamionAuxilio {
 
-	private List<Vehiculo> pedidos;
+	private List<Vehiculo> pedidos = new ArrayList<Vehiculo>();
 	private Ubicacion ubicacion;
 	private String patente;
 
@@ -40,6 +41,11 @@ public abstract class CamionAuxilio {
 
 	public String getPatente() {
 		return patente;
+	}
+
+	@Override
+	public String toString() {
+		return "CamionAuxilio [pedidos=" + pedidos + ", ubicacion=" + ubicacion + ", patente=" + patente + "]";
 	}
 
 }
