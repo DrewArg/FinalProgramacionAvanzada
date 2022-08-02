@@ -12,11 +12,29 @@ public class ProblemaService {
 
 	public Problema addAndReturnProblema(String descripcion, TipoReparacion tipoReparacion) {
 
-		Problema problema = new Problema(descripcion, tipoReparacion);
+		Problema problema = factoryProblema(descripcion, tipoReparacion);
 
 		problemas.add(problema);
 
 		return problema;
+	}
+
+	private Problema factoryProblema(String descripcion, TipoReparacion tipoReparacion) {
+		Problema resultado = null;
+
+		if (tipoReparacion == TipoReparacion.REPARACION_COMPLEJA || tipoReparacion == TipoReparacion.REMOLQUE) {
+
+			resultado = new Problema(descripcion, tipoReparacion);
+
+			resultado.setRequiereRemolque(true);
+		} else {
+			
+			resultado = new Problema(descripcion, tipoReparacion);
+
+			resultado.setRequiereRemolque(false);
+		}
+
+		return resultado;
 	}
 
 }

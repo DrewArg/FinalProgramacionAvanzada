@@ -6,9 +6,11 @@ import java.util.List;
 import ar.edu.davinci.domain.clases.Cliente;
 import ar.edu.davinci.domain.clases.Membresia;
 import ar.edu.davinci.domain.clases.Problema;
+import ar.edu.davinci.domain.clases.Ubicacion;
 import ar.edu.davinci.domain.clases.Vehiculo;
 import ar.edu.davinci.domain.enumerados.TipoMembresia;
 import ar.edu.davinci.domain.enumerados.TipoReparacion;
+import ar.edu.davinci.domain.interfaces.Listener;
 
 public class ClienteService {
 
@@ -16,17 +18,17 @@ public class ClienteService {
 	private ProblemaService problemaService = new ProblemaService();
 	private MembresiaService membresiaService = new MembresiaService();
 
-	public String addCliente(String dni, TipoMembresia tipoMembresia) {
+	public void addCliente(String dni, TipoMembresia tipoMembresia) {
 
-		Membresia membresia = membresiaService.factoryMembresia(tipoMembresia);
+		Membresia membresia = membresiaService.addMembresia(tipoMembresia);
+		Cliente cliente = new Cliente(dni, membresia);
 
-		membresiaService.addMembresia(membresia);
-		clientes.add(new Cliente(dni, membresia));
+		clientes.add(cliente);
 
-		return "Cliente agregado con exito";
+		System.out.println(cliente);
 	}
 
-	public String asignarVehiculoCliente(String dni, Vehiculo vehiculo) {
+	public void asignarVehiculoCliente(String dni, Vehiculo vehiculo) {
 
 		String mensaje = null;
 		Cliente cliente = buscarClienteByDni(dni);
@@ -43,11 +45,10 @@ public class ClienteService {
 
 		}
 
-		return mensaje;
-
+		System.out.println(mensaje);
 	}
 
-	public String cambiarTipoMembresiaCliente(String dni, TipoMembresia tipoMembresia) {
+	public void cambiarTipoMembresiaCliente(String dni, TipoMembresia tipoMembresia) {
 
 		String mensaje = null;
 		Cliente cliente = buscarClienteByDni(dni);
@@ -62,10 +63,11 @@ public class ClienteService {
 			mensaje = "No existe un cliente con ese dni.";
 		}
 
-		return mensaje;
+		System.out.println(mensaje);
 	}
 
-	public String reportarProblema(String dni, String patente, String descripcion, TipoReparacion tipoReparacion) {
+	public void reportarProblema(String dni, String patente, String descripcion, TipoReparacion tipoReparacion,
+			Double longitud, Double latitud) {
 
 		String mensaje = null;
 
@@ -78,20 +80,25 @@ public class ClienteService {
 			if (vehiculo.getPatente().equalsIgnoreCase(patente)) {
 
 				vehiculo.setProblema(problema);
+				vehiculo.setUbicacion(new Ubicacion(longitud, latitud));
 
 				if (clienteCumpleAndSetTope(cliente, problema)) {
 
+					Listener.asignarCamion(cliente, vehiculo);
+
 					mensaje = "Problema reportado correctamente";
+				} else {
+					
+					mensaje = "La membresia del cliente no cubre este tipo de servicios";
 				}
 
 			} else {
+
 				mensaje = "El cliente no tiene eses vehiculo en su poder.";
 			}
 		}
 
-//		TODO : aca deberia llamar al metodo de la interfaz listener y pasarle la data
-
-		return mensaje;
+		System.out.println(mensaje);
 	}
 
 	private Cliente buscarClienteByDni(String dni) {
@@ -120,11 +127,20 @@ public class ClienteService {
 
 			resultado = true;
 
+		} else if (cliente.getMembresia().getTipoMembresia() == TipoMembresia.CLASSIC
+				&& problema.getTipoReparacion() == TipoReparacion.REPARACION_SIMPLE) {
+
+			resultado = true;
+
 		} else if (cliente.getMembresia().getTipoMembresia() == TipoMembresia.ECONOMMIC
 				&& cliente.getMembresia().getTopeReparaciones() > 0
 				&& problema.getTipoReparacion() == TipoReparacion.REPARACION_SIMPLE) {
 
 			cliente.getMembresia().setTopeReparaciones(cliente.getMembresia().getTopeReparaciones() - 1);
+
+			resultado = true;
+
+		} else if (cliente.getMembresia().getTipoMembresia() == TipoMembresia.PLATINUM) {
 
 			resultado = true;
 

@@ -35,4 +35,10 @@ public class Vehiculo {
 	public void setProblema(Problema problema) {
 		this.problema = problema;
 	}
+
+	@Override
+	public String toString() {
+		return "Vehiculo [ubicacion=" + ubicacion + ", problema=" + problema + ", toneladas=" + toneladas + ", patente="
+				+ patente + "]";
+	}
 }

@@ -13,14 +13,16 @@ public class MembresiaService {
 
 	List<Membresia> membresias = new ArrayList<Membresia>();
 
-	public String addMembresia(Membresia membresia) {
+	public Membresia addMembresia(TipoMembresia tipoMembresia) {
 
+		Membresia membresia = factoryMembresia(tipoMembresia);
+		
 		membresias.add(membresia);
 
-		return "Membresía agregada con exito.";
+		return membresia;
 	}
 
-	public Membresia factoryMembresia(TipoMembresia tipoMembresia) {
+	private Membresia factoryMembresia(TipoMembresia tipoMembresia) {
 
 		Membresia membresia = null;
 

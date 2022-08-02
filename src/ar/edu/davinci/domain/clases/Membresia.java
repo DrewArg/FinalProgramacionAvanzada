@@ -36,4 +36,10 @@ public abstract class Membresia {
 		this.tipoMembresia = tipoMembresia;
 	}
 
+	@Override
+	public String toString() {
+		return "Membresia [topeReparaciones=" + topeReparaciones + ", topeRemolques=" + topeRemolques
+				+ ", tipoMembresia=" + tipoMembresia + "]";
+	}
+
 }

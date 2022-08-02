@@ -42,4 +42,9 @@ public abstract class CamionAuxilio {
 		return patente;
 	}
 
+	@Override
+	public String toString() {
+		return "CamionAuxilio [pedidos=" + pedidos + ", ubicacion=" + ubicacion + ", patente=" + patente + "]";
+	}
+
 }
