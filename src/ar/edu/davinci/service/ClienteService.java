@@ -133,19 +133,19 @@ public class ClienteService {
 
 		Boolean resultado = false;
 
-		if (cliente.getMembresia().getTipoMembresia() == TipoMembresia.CLASSIC && problema.getRequiereRemolque()
-				&& cliente.getMembresia().getTopeRemolques() > 0) {
+		if (!cliente.getTieneMora() && cliente.getMembresia().getTipoMembresia() == TipoMembresia.CLASSIC
+				&& problema.getRequiereRemolque() && cliente.getMembresia().getTopeRemolques() > 0) {
 
 			cliente.getMembresia().setTopeRemolques(cliente.getMembresia().getTopeRemolques() - 1);
 
 			resultado = true;
 
-		} else if (cliente.getMembresia().getTipoMembresia() == TipoMembresia.CLASSIC
+		} else if (!cliente.getTieneMora() && cliente.getMembresia().getTipoMembresia() == TipoMembresia.CLASSIC
 				&& problema.getTipoReparacion() == TipoReparacion.REPARACION_SIMPLE) {
 
 			resultado = true;
 
-		} else if (cliente.getMembresia().getTipoMembresia() == TipoMembresia.ECONOMMIC
+		} else if (!cliente.getTieneMora() && cliente.getMembresia().getTipoMembresia() == TipoMembresia.ECONOMMIC
 				&& cliente.getMembresia().getTopeReparaciones() > 0
 				&& problema.getTipoReparacion() == TipoReparacion.REPARACION_SIMPLE) {
 
@@ -153,7 +153,7 @@ public class ClienteService {
 
 			resultado = true;
 
-		} else if (cliente.getMembresia().getTipoMembresia() == TipoMembresia.PLATINUM) {
+		} else if (!cliente.getTieneMora() && cliente.getMembresia().getTipoMembresia() == TipoMembresia.PLATINUM) {
 
 			resultado = true;
 

@@ -29,11 +29,11 @@ public class CamionAuxilioService {
 	}
 
 	public void addMiniTallerMovil(Double longitud, Double latitud, String patente) {
-		MiniTallerMovil minitallet = new MiniTallerMovil(new Ubicacion(longitud, latitud), patente);
+		MiniTallerMovil minitaller = new MiniTallerMovil(new Ubicacion(longitud, latitud), patente);
 
-		auxilios.add(minitallet);
+		auxilios.add(minitaller);
 
-		System.out.println(minitallet);
+		System.out.println(minitaller);
 	}
 
 	public void addMiniGrua(Double longitud, Double latitud, String patente) {
@@ -165,8 +165,8 @@ public class CamionAuxilioService {
 			}
 		}
 		System.out.println(camion);
-		return camion;
 
+		return camion;
 	}
 
 }
