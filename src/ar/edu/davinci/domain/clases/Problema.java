@@ -8,13 +8,6 @@ public class Problema {
 	private Boolean requiereRemolque;
 	private TipoReparacion tipoReparacion;
 
-	/**
-	 * si el tipo de reparacion es remolque o reparacion compleja, se deberia
-	 * activar el flag de remolque
-	 */
-
-//	TODO : deberia haber un boolean problemaResuelto?
-
 	public Problema(String descripcion, TipoReparacion tipoReparacion) {
 		this.descripcion = descripcion;
 		this.tipoReparacion = tipoReparacion;

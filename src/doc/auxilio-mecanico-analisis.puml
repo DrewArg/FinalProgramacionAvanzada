@@ -6,71 +6,236 @@ package domain{
         - Membresia membresia
         - List<Vehiculo> vehiculos
         - Boolean tieneMora
+        - String dni
+
+        + Cliente(String dni, Membresia membresia)
+        + getMembresia() : Membresia
+        + setMembresia(Membresia membresia): void
+        + getVehiculos() : List<Vehiculo>
+        + setVehiculo(Vehiculo vehiculo) : void
+        + getTieneMora() : Boolean
+        + setTieneMora(Boolean tieneMora) : void
+        + getDni() : String
+        + setDni(String dni) : void
+        + toString() : String
     }
 
     abstract class Membresia{
-		- List<TipoServicio>(2) servicios 
+        - Integer topeReparaciones
+        - Imteger topeRemolques
+        - TipoMembresia tipoMembresia
+
+        + Membresia(TipoMembresia tipoMembresia)
+        + getTopeReparaciones() : Integer
+        + setTopeReparacioens(Integer topeReparaciones) : void
+        + getTopeRemolques(): Integer
+        + setTopeRemolques(Integer topeRemolques): void
+        + getTipoMembresia(): TipoMembresia
+        + setTipoMembresia(TipoMembresia tipoMembresia): void
+        + toString() : String
+
     }
 
     class Platinum extends Membresia{
-       
+        + Platinum(TipoMembresia tipoMembresia)
     }
 
     class Classic extends Membresia{
-        
+        + Classic(TipoMembresia tipoMembresia)
     }
 
     class Economic extends Membresia{
-        
+        + Economic(TipoMembresia tipoMembresia)
     }
 
     class Vehiculo{
         - Ubicacion ubicacion
-        - Double toneladas
         - Problema problema
+        - Double toneladas
+        - String patente
+
+        + Vehiculo(String patente, Double toneladas)
+
+        + getUbicacion() : Ubicacion
+        + getProblema() : Problema
+        + getToneladas() : Double
+        + getPatente() : String
+        + setUbicacion(Ubicacion ubicacion) : void
+        + setProblema(Problema problema) : void
     }
 
     class Ubicacion{
         - Double longitud
         - Double latitud
+
+        + Ubicacion (Double longitud, Double latitud)
+        + getLongitud() : Double
+        + setLongitud(Double longitud) : void
+        + getLatitud() : Double
+        + setLatitud(Double latitud) : void
     }
 
 
     abstract class CamionAuxilio{
-        - List<Problema> pedidos
+        - List<Vehiculo> pedidos
         - Ubicacion ubicacion
+        - String patente
+
+        + CamionAuxilio(Ubicacion ubicacion, String patente)
+
+        + getPedidos() : List<Vehiculo>
+        + getPedido(String patente) : Vehiculo
+        + addPedido(Vehiculo pedido): void
+        + getUbicacion() : Ubicacion
+        + setUbicacion(Ubicacion ubicacion) : void
+        + getPatente() : String
+        + toString(): String
     }
 
     class MiniTallerMovil extends CamionAuxilio{
-
+        + MiniTallerMovil(Ubicacion ubicacion, String patente)
     }
 
     class MiniGrua extends CamionAuxilio{
-
+        + MiniGrua(Ubicacion ubicacion, String patente)
     }
 
     class GranGrua extends CamionAuxilio{
         -Boolean : tallerAsociado
+        + GranGrua(Ubicacion ubicacion, String patente)
+        + GranGrua(Ubicacion ubicacion, String patente, Boolean tallerAsociado)
+        + getTallerAsociado() : Boolean
+        + setTallerAsociado(Boolean: tallerAsociado)
+
     }
 
     class Problema{
         - String descripcion
         - Boolean requiereRemolque
-        - TipoServicio tipoServicio
+
+        + Problema(String descripcion, TipoReparacion tipoReparacion)
+        + getDescripcion() : String
+        + setDescripcion(String descripcion) : void
+        + getRequiereRemolque() : Boolean
+        + setRequiereRemolque(Boolean requiereRemolque) : void
+        + getTipoReparacion() : TipoReparacion
+        + setTipoReparacion(TipoReparacion tipoReparacion) : void
     }
 
-	Enum TipoServicio{
-	REMOLQUE
-	REPARACION_SIMPLE
-	REPARACION_COMPLEJA
-	}
+    Enum Servicio{
+        REMOLQUE
+        REPARACION
+    }
 
+    Enum TipoMembresia{
+        PLATINUM
+        CLASSIC
+        ECONOMMIC
+    }
+
+    Enum TipoReparacion{
+        REPARACION_SIMPLE
+        REPARACION_COMPLEJA
+        REMOLQUE
+    }
     interface ModuloPagos{
-		tieneMora()
+        + tieneMora() : void
+    }
+    interface Listener{
+        + asignarCamion(Cliente cliente  Vehiculo vehiculo) : void
     }
 
 
 }
+
+
+
+package service{
+    class CamionAuxilioService{
+        - CamionAuxilioService instancia
+        - List<CamionAuxilio> auxilios
+
+        + CamionAuxilioService()
+
+        + getInstancia() : synchronized
+        + addMiniTallerMovil(Double longitud, Double latitud, String patente) : void
+        + addMiniGrua(Double longitud, Double latitud, String patente) : void
+        + addGrangrua(Double longitud, Double latitud, String patente)
+        + addGranGruaconTaller(Double longitud, Double latitud, String patente) : void
+        + getCamionAuxilio(String patente): CamionAuxilio
+        + camionIndicadoParaPedido(Vehiculo vehiculo): CamionAuxilio
+        - buscarCamionCercano(Ubicacion ubicacionCliente, List<CamionAuxilio> camiones) : CamionAuxilio
+
+
+    }
+
+    class ClienteService {
+        - ClienteService instancia
+        - List<Cliente> clientes
+        - ProblemaService problemaService
+        -  MembresiaService membresiaService
+
+        -ClienteService()
+
+        + getInstance() :  ClienteService
+
+        + addCliente(String dni, TipoMembresia tipoMembresia) : void
+
+        + asignarVehiculoCliente(String dni, Vehiculo vehiculo) : void
+
+        + cambiarTipoMembresiaCliente(String dni, TipoMembresia tipoMembresia) : void
+
+        + reportarProblema (String dni, String patente, String description, Tiporeparacion tipoReparacion, Double longitud, Double latitud) : void
+
+        - buscarClienteByDni(String dni) : Cliente
+
+        - clienteCumpleAndSetTope(Cliente cliente, Problema problema) : Boolean
+    }
+
+    class MembresiaService{
+        - Membresiaservice instancia
+        - List<Membresia> membresias
+        - MembresiaService()
+
+        + MembresiaService()
+
+        + addMembresia(TipoMembresia tipoMembresia) : void
+
+        - factoryMembresia(TipoMembresia tipoMembresia) : Membresia
+    }
+
+    class ProblemaService{
+        - ProblemaService instancia
+        + ProblemaService
+        + getInstance() : ProblemaService
+
+        +addAndreturnProblema(String descripcion, TipoReparacion tipoReparacion) : Problema
+
+        - factoryProblema(String descripcion, TipoReparacion tipoReparacion): Problema
+    }
+
+    class VehiculoService{
+        - VehiculoService instance
+        - List<Vehiculos> vehiculos
+        - VehiculoService()
+
+        + addVehiculo(String patenet, Double toneladas): void
+
+        + buscarVehiculoByPatente(String patente) : Vehiculo
+
+
+    }
+
+}
+
+package test{
+
+    class AuxilioMecanicoTest{
+
+        + static void main(String[] args)
+    }
+}
+
 
 Problema        *--   Vehiculo       : tiene      <
 Ubicacion       *--   Vehiculo       : tiene      <
@@ -78,24 +243,8 @@ Ubicacion       *--   CamionAuxilio  : tiene      <
 Membresia       *--   Cliente        : tiene      <
 Vehiculo        *--   Cliente        : tiene      <
 ModuloPagos     <|..  Cliente        : implementa <
-TipoServicio    *--   Problema       : tiene      <
-TipoServicio    *--   Membresia      : tiene      <
 
-
-
-package service{
-    class CamionAuxilioService{
-
-    }
-}
-
-package test{
-
-	class AuxilioMecanicoTest{
-	
-	+ static void main(String[] args)
-	}
-}
+domain --|> service : usa      >
 
 
 
